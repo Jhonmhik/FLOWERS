@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Do You Love Me?</title>
+  <style>
+    body {
+      
+      background-image: url('valen.jpg');  /* your image file */
+      background-size: cover;               /* cover whole viewport */
+      background-position: center;          /* center the image */
+      background-repeat: no-repeat;         /* don't tile */
+      
+      font-family: 'Arial Rounded MT Bold', Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      user-select: none;
+    }
+
+    
+
+    .container {
+      text-align: center;
+      background: rgba(255, 217, 230, 0.8); /* semi-transparent pink for readability */
+      padding: 40px 60px;
+      border-radius: 20px;
+      box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+      position: relative;
+      width: 320px;
+    }
+    .question {
+      font-size: 1.6rem;
+      margin-bottom: 25px;
+      color: #333;
+    }
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      position: relative;
+      height: 60px; /* space for buttons to move */
+    }
+    button {
+      border: none;
+      border-radius: 25px;
+      padding: 12px 30px;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(255, 105, 180, 0.5);
+      color: white;
+      transition: background-color 0.3s, box-shadow 0.3s;
+      position: absolute; /* to allow moving */
+      top: 0;
+    }
+    #yesBtn {
+      background-color: #ff69b4;
+      left: 40px;
+    }
+    #yesBtn:hover {
+      background-color: #ff4c99;
+      box-shadow: 0 6px 12px rgba(255, 105, 180, 0.8);
+    }
+    #noBtn {
+      background-color: #ff3366;
+      left: 180px;
+    }
+    #noBtn:hover {
+      background-color: #e6004c;
+      box-shadow: 0 6px 12px rgba(255, 51, 102, 0.8);
+    }
+    /* Reaction message */
+    #reaction {
+      margin-top: 30px;
+      font-size: 1.2rem;
+      color: #cc0044;
+      opacity: 0;
+      transition: opacity 0.6s;
+    }
+    #reaction.visible {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Removed <img> -->
+
+  <div class="container" id="questionContainer">
+    <div class="question">Do you love me?</div>
+    <div class="buttons">
+      <button id="yesBtn">Yes</button>
+      <button id="noBtn">No</button>
+    </div>
+    <div id="reaction">I love you too! 💖</div>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById('noBtn');
+    const yesBtn = document.getElementById('yesBtn');
+    const container = document.getElementById('questionContainer');
+    const reaction = document.getElementById('reaction');
+
+    noBtn.addEventListener('mouseover', () => {
+      const containerRect = container.getBoundingClientRect();
+      const btnRect = noBtn.getBoundingClientRect();
+
+      const maxX = containerRect.width - btnRect.width;
+      const maxY = containerRect.height - btnRect.height - 40;
+
+      const newX = Math.floor(Math.random() * maxX);
+      const newY = Math.floor(Math.random() * maxY);
+
+      noBtn.style.left = `${newX}px`;
+      noBtn.style.top = `${newY}px`;
+    });
+
+    yesBtn.addEventListener('click', () => {
+      reaction.classList.add('visible');
+      setTimeout(() => {
+        window.location.href = "file:///C:/Users/merin/OneDrive/Documents/FLOWERS/index.html";
+      }, 1000);
+    });
+  </script>
+</body>
+</html>
